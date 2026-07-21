@@ -126,6 +126,12 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" variant="accent">
+                <Link href="/dashboard#guided-demo">
+                  Start guided demo
+                  <Sparkles aria-hidden="true" className="h-4 w-4" />
+                </Link>
+              </Button>
               <Button asChild size="lg">
                 <Link href="/onboarding">
                   Start family check-in

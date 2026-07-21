@@ -19,6 +19,9 @@ import {
   Zap
 } from "lucide-react";
 
+import { CompanionPanel } from "@/components/companion-panel";
+import { EvidenceDrawer } from "@/components/evidence-drawer";
+import { MemoryPanel } from "@/components/memory-panel";
 import { SectionHeading } from "@/components/section-heading";
 import { SafetyNote } from "@/components/safety-note";
 import { Badge } from "@/components/ui/badge";
@@ -299,6 +302,16 @@ export default function ParentPage() {
           </CardHeader>
         </Card>
       </section>
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+        <CompanionPanel
+          context="parent"
+          prompt="Ask for a grounded response to the parenting challenge you named."
+        />
+        <MemoryPanel />
+      </section>
+
+      <EvidenceDrawer title="Parent evidence-informed explanation drawer" />
 
       <SafetyNote />
     </main>

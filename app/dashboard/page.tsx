@@ -4,7 +4,6 @@ import {
   BookOpenCheck,
   CalendarDays,
   CheckCircle2,
-  Clock3,
   Compass,
   HeartPulse,
   LayoutDashboard,
@@ -17,6 +16,13 @@ import {
   UsersRound
 } from "lucide-react";
 
+import { CompanionPanel } from "@/components/companion-panel";
+import { CrossFamilyInsightCard } from "@/components/cross-family-insight-card";
+import { DailyFamilySummaryCard } from "@/components/daily-family-summary-card";
+import { EvidenceDrawer } from "@/components/evidence-drawer";
+import { FamilyTimeline } from "@/components/family-timeline";
+import { GuidedDemoJourney } from "@/components/guided-demo-journey";
+import { MemoryPanel } from "@/components/memory-panel";
 import { MetricCard } from "@/components/metric-card";
 import { SafetyNote } from "@/components/safety-note";
 import { SectionHeading } from "@/components/section-heading";
@@ -44,24 +50,6 @@ const sidebarItems = [
   { href: "/parent", label: "Parent", icon: HeartPulse },
   { href: "/child", label: "Child", icon: SmilePlus },
   { href: "/family", label: "Family", icon: UsersRound }
-];
-
-const timeline = [
-  {
-    time: "8:10 AM",
-    title: "Morning transition felt rushed",
-    detail: "A parent check-in marked stress higher than usual."
-  },
-  {
-    time: "3:45 PM",
-    title: "Child asked for help",
-    detail: "Leo used a mood word before homework."
-  },
-  {
-    time: "Tonight",
-    title: "Suggested repair moment",
-    detail: "Try one appreciation prompt before bedtime."
-  }
 ];
 
 const activityWidgets = [
@@ -142,6 +130,8 @@ export default function DashboardPage() {
             </div>
           </section>
 
+          <GuidedDemoJourney />
+
           <section
             aria-label="Family wellbeing snapshot"
             className="grid gap-4 md:grid-cols-4"
@@ -173,6 +163,11 @@ export default function DashboardPage() {
               tone="secondary"
               value="1"
             />
+          </section>
+
+          <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+            <CrossFamilyInsightCard />
+            <DailyFamilySummaryCard />
           </section>
 
           <section className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
@@ -221,34 +216,7 @@ export default function DashboardPage() {
           </section>
 
           <section className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock3 aria-hidden="true" className="h-5 w-5 text-primary" />
-                  Family timeline
-                </CardTitle>
-                <CardDescription>
-                  A soft view of signals from the day, without turning family
-                  life into a scorecard.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {timeline.map((event) => (
-                  <div className="relative pl-7" key={event.title}>
-                    <span className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-primary/10" />
-                    <div className="rounded-lg border border-white/70 bg-card/75 p-4 shadow-soft">
-                      <p className="text-xs font-semibold text-primary">
-                        {event.time}
-                      </p>
-                      <h3 className="mt-1 font-semibold">{event.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                        {event.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+            <FamilyTimeline />
 
             <Card>
               <CardHeader>
@@ -438,6 +406,16 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </section>
+
+          <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+            <CompanionPanel
+              context="dashboard"
+              prompt="Ask about the possible school-morning pattern, timeline, or tomorrow's suggested experiment."
+            />
+            <MemoryPanel />
+          </section>
+
+          <EvidenceDrawer />
 
           <SafetyNote />
         </div>

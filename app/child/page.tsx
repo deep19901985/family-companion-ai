@@ -14,6 +14,7 @@ import {
   Wind
 } from "lucide-react";
 
+import { CompanionPanel } from "@/components/companion-panel";
 import { SectionHeading } from "@/components/section-heading";
 import { SafetyNote } from "@/components/safety-note";
 import { Badge } from "@/components/ui/badge";
@@ -83,20 +84,23 @@ export default function ChildPage() {
         <SectionHeading
           description="Simple choices, steady language, and a clear bridge to trusted adults."
           eyebrow="Child companion"
-          title="Let&apos;s check in with how today feels"
+          title="Let's check in with how today feels"
         />
         <Card className="glass-panel">
-          <CardContent className="flex items-center gap-4 pt-6">
+          <CardContent className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center">
             <div className="grid h-14 w-14 place-items-center rounded-lg bg-primary/10 text-primary">
               <ShieldCheck aria-hidden="true" className="h-7 w-7" />
             </div>
-            <div>
+            <div className="flex-1">
               <p className="text-sm font-semibold">Grown-up connection stays visible</p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
                 This space helps with words and calm practice. It is not a secret
                 place.
               </p>
             </div>
+            <Button type="button" variant="secondary">
+              Talk to a trusted grown-up
+            </Button>
           </CardContent>
         </Card>
       </section>
@@ -268,6 +272,40 @@ export default function ChildPage() {
             </CardContent>
           </Card>
         </div>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+        <CompanionPanel
+          context="child"
+          prompt="Use simple words. The companion will always point back to a trusted grown-up for big or unsafe feelings."
+          title="Child-safe local companion"
+        />
+        <Card className="glass-panel">
+          <CardHeader>
+            <Badge variant="warning">Parent-visible demo notice</Badge>
+            <CardTitle>Safety phrases trigger a mock escalation</CardTitle>
+            <CardDescription>
+              Try statements such as &quot;I feel unsafe&quot;, &quot;Someone
+              hurt me&quot;, or &quot;I want to hurt myself&quot; to see the demo
+              boundary. The app does not attempt counselling.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {[
+              "Tell a trusted grown-up now.",
+              "Emergency help may be needed.",
+              "Region-appropriate emergency information is a production placeholder.",
+              "Professional safeguarding review is required before production."
+            ].map((item) => (
+              <div
+                className="rounded-lg border border-white/70 bg-card/75 p-3 text-sm leading-6 shadow-soft"
+                key={item}
+              >
+                {item}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </section>
 
       <SafetyNote>

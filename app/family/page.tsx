@@ -10,6 +10,9 @@ import {
   UsersRound
 } from "lucide-react";
 
+import { CompanionPanel } from "@/components/companion-panel";
+import { EvidenceDrawer } from "@/components/evidence-drawer";
+import { MemoryPanel } from "@/components/memory-panel";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -286,6 +289,16 @@ export default function FamilyPage() {
           </CardContent>
         </Card>
       </section>
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.9fr]">
+        <CompanionPanel
+          context="family"
+          prompt="Ask for a shared check-in, appreciation prompt, or one routine experiment."
+        />
+        <MemoryPanel />
+      </section>
+
+      <EvidenceDrawer title="Family support explanation drawer" />
 
       <Card className="border-primary/25 bg-primary/10">
         <CardContent className="flex gap-4 pt-6">
