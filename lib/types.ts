@@ -65,6 +65,9 @@ export type CompanionMessage = {
   context: CompanionContext;
   suggestions?: string[];
   safetyLevel?: CompanionSafetyLevel;
+  structured?: StructuredCompanionResponse;
+  evidence?: EvidenceRecord[];
+  responseSource?: CompanionResponseSource;
 };
 
 export type CompanionResponse = {
@@ -125,17 +128,29 @@ export type DailyFamilySummary = {
 
 export type EvidenceStrength =
   | "established guidance"
+  | "emerging evidence"
   | "promising evidence"
   | "product hypothesis";
 
 export type EvidenceRecord = {
   id: string;
-  principle: string;
-  explanation: string;
-  sourcePlaceholder: string;
-  organization: string;
-  linkPlaceholder: string;
-  dateReviewed: string;
+  title: string;
+  organisation: string;
+  sourceUrl: string;
+  topic: string;
+  summary: string;
+  evidenceCategory: EvidenceStrength;
+  dateAccessed: string;
+  lastReviewed: string;
+  productionVerificationStatus: string;
+  allowedContexts: CompanionContext[];
+  placeholderLabel?: string;
+  principle?: string;
+  explanation?: string;
+  sourcePlaceholder?: string;
+  organization?: string;
+  linkPlaceholder?: string;
+  dateReviewed?: string;
   strength: EvidenceStrength;
 };
 
@@ -146,4 +161,50 @@ export type GuidedDemoStep = {
   description: string;
   actionLabel: string;
   memory?: DemoMemory;
+};
+
+export type SafetyClassification =
+  | "ordinary"
+  | "concerning"
+  | "urgent-safeguarding"
+  | "self-harm-or-immediate-danger";
+
+export type CompanionResponseSource = "live-ai" | "demo-fallback";
+
+export type MemorySuggestion = {
+  type: DemoMemoryType;
+  who: string;
+  content: string;
+  relevance: string;
+};
+
+export type StructuredCompanionResponse = {
+  acknowledgement: string;
+  possiblePattern: string;
+  practicalNextStep: string;
+  whyThisMayHelp: string;
+  evidenceIds: string[];
+  safetyLevel: SafetyClassification;
+  suggestedReplies: string[];
+  memorySuggestion: MemorySuggestion | null;
+  limitationsNote: string;
+};
+
+export type CompanionApiRequest = {
+  mode: CompanionContext;
+  pageContext: string;
+  userMessage: string;
+  memories: DemoMemory[];
+  allowedEvidenceIds?: string[];
+  evidenceIds?: string[];
+  forceDemo?: boolean;
+};
+
+export type CompanionApiResponse = {
+  source: CompanionResponseSource;
+  response: StructuredCompanionResponse;
+  evidence: EvidenceRecord[];
+  safetyClassification: SafetyClassification;
+  retryable: boolean;
+  errorMessage?: string;
 };

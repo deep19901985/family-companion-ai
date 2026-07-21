@@ -113,7 +113,19 @@ export const dailyFamilySummary: DailyFamilySummary = {
 
 export const evidenceRecords: EvidenceRecord[] = [
   {
-    id: "evidence-transition-cues",
+    id: "demo-transition-cues",
+    title: "Predictable transition cues",
+    organisation: "Family Companion AI",
+    sourceUrl: "Demo reference only",
+    topic: "Transition support",
+    summary:
+      "Clear, repeated cues can make everyday transitions easier to understand. This demo uses the principle to suggest one small routine experiment.",
+    evidenceCategory: "product hypothesis",
+    dateAccessed: "2026-07-21",
+    lastReviewed: "Demo review pending",
+    productionVerificationStatus: "Source record to be verified before production",
+    allowedContexts: ["dashboard", "parent", "child", "family"],
+    placeholderLabel: "Source record to be verified before production",
     principle: "Predictable transition cues",
     explanation:
       "Clear, repeated cues can make everyday transitions easier to understand. This demo uses the principle to suggest one small routine experiment.",
@@ -121,10 +133,22 @@ export const evidenceRecords: EvidenceRecord[] = [
     organization: "Demo reference only",
     linkPlaceholder: "Link placeholder",
     dateReviewed: "Demo review pending",
-    strength: "established guidance"
+    strength: "product hypothesis"
   },
   {
-    id: "evidence-coregulation",
+    id: "demo-coregulation",
+    title: "Adult regulation before problem-solving",
+    organisation: "Family Companion AI",
+    sourceUrl: "Demo reference only",
+    topic: "Co-regulation",
+    summary:
+      "When a caregiving adult slows the moment first, the next instruction can feel easier to hear. This is framed as supportive guidance, not treatment.",
+    evidenceCategory: "product hypothesis",
+    dateAccessed: "2026-07-21",
+    lastReviewed: "Demo review pending",
+    productionVerificationStatus: "Source record to be verified before production",
+    allowedContexts: ["dashboard", "parent", "family"],
+    placeholderLabel: "Source record to be verified before production",
     principle: "Adult regulation before problem-solving",
     explanation:
       "When a caregiving adult slows the moment first, the next instruction can feel easier to hear. This is framed as supportive guidance, not treatment.",
@@ -132,10 +156,22 @@ export const evidenceRecords: EvidenceRecord[] = [
     organization: "Demo reference only",
     linkPlaceholder: "Link placeholder",
     dateReviewed: "Demo review pending",
-    strength: "promising evidence"
+    strength: "product hypothesis"
   },
   {
-    id: "evidence-family-memory",
+    id: "demo-family-memory",
+    title: "Transparent family memory",
+    organisation: "Family Companion AI",
+    sourceUrl: "Demo reference only",
+    topic: "Memory consent",
+    summary:
+      "Showing what the demo remembers lets families review, delete, and question context instead of assuming hidden memory.",
+    evidenceCategory: "product hypothesis",
+    dateAccessed: "2026-07-21",
+    lastReviewed: "Demo review pending",
+    productionVerificationStatus: "Source record to be verified before production",
+    allowedContexts: ["dashboard", "parent", "child", "family"],
+    placeholderLabel: "Source record to be verified before production",
     principle: "Transparent family memory",
     explanation:
       "Showing what the demo remembers lets families review, delete, and question context instead of assuming hidden memory.",

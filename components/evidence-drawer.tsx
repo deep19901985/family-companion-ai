@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { evidenceRecords } from "@/lib/milestone2-data";
+import { verifiedEvidenceRecords } from "@/lib/ai/evidence-registry";
 import type { EvidenceRecord } from "@/lib/types";
 
 type EvidenceDrawerProps = {
@@ -17,8 +17,8 @@ type EvidenceDrawerProps = {
 };
 
 export function EvidenceDrawer({
-  records = evidenceRecords,
-  title = "Evidence-informed explanations"
+  records = verifiedEvidenceRecords,
+  title = "View sources"
 }: EvidenceDrawerProps) {
   return (
     <Card>
@@ -28,9 +28,8 @@ export function EvidenceDrawer({
           {title}
         </CardTitle>
         <CardDescription>
-          Demo reference records are placeholders to be verified before
-          production. No real quotations, study results, or statistics are
-          invented here.
+          Official-source records and clearly labelled demo placeholders. No
+          quotations, study results, or statistics are invented here.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -40,18 +39,41 @@ export function EvidenceDrawer({
             key={record.id}
           >
             <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-4 font-semibold">
-              <span>{record.principle}</span>
+              <span>{record.title}</span>
               <ChevronDown aria-hidden="true" className="h-5 w-5 text-primary" />
             </summary>
             <div className="mt-4 space-y-4 text-sm leading-6 text-muted-foreground">
-              <p>{record.explanation}</p>
+              <p>{record.summary}</p>
               <div className="grid gap-3 md:grid-cols-2">
-                <Meta label="Source" value={record.sourcePlaceholder} />
-                <Meta label="Organisation" value={record.organization} />
-                <Meta label="Link" value={record.linkPlaceholder} />
-                <Meta label="Date reviewed" value={record.dateReviewed} />
+                <Meta label="Organisation" value={record.organisation} />
+                <Meta label="Topic" value={record.topic} />
+                <Meta label="Date accessed" value={record.dateAccessed} />
+                <Meta label="Last reviewed" value={record.lastReviewed} />
               </div>
-              <Badge variant="neutral">{record.strength}</Badge>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="neutral">{record.evidenceCategory}</Badge>
+                <Badge
+                  variant={
+                    record.productionVerificationStatus.includes("verified")
+                      ? "success"
+                      : "warning"
+                  }
+                >
+                  {record.placeholderLabel ?? record.productionVerificationStatus}
+                </Badge>
+              </div>
+              {record.sourceUrl.startsWith("http") ? (
+                <a
+                  className="inline-flex font-semibold text-primary underline-offset-4 hover:underline"
+                  href={record.sourceUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Open official source
+                </a>
+              ) : (
+                <p className="font-semibold text-foreground">{record.sourceUrl}</p>
+              )}
             </div>
           </details>
         ))}

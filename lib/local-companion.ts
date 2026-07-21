@@ -2,7 +2,7 @@ import type {
   CompanionContext,
   CompanionResponse,
   CompanionSafetyLevel
-} from "@/lib/types";
+} from "./types";
 
 const escalationKeywords = [
   "i feel unsafe",
